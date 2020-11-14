@@ -29,7 +29,7 @@
         public bool HasPlayed
         {get; set;} = false;
 
-        public Team_League(Team team) : base(team.TeamName, team.Players)
+        public Team_League(Team team) : base(team.Name, team.Players)
         {}
     }
 }

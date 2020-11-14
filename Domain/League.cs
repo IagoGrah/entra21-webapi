@@ -159,7 +159,7 @@ namespace Domain
                 team.HasPlayed = true;
                 opponent.HasPlayed = true;
 
-                results.Add($"{team.TeamName} {score1} x {score2} {opponent.TeamName}");
+                results.Add($"{team.Name} {score1} x {score2} {opponent.Name}");
             }
 
             History.AddRange(results);
@@ -179,7 +179,7 @@ namespace Domain
             {
                 double played = team.HasPlayed ? Round : Round - 1;
                 double percentage = played == 0 ? 0 : (team.Points/(played*3)) * 100;
-                var resultString = $"{team.TeamName} | {team.Points} | {played} | {team.Wins} | {team.Draws} | {team.Losses} | {team.GoalDifference} | {team.GoalsFor} | {team.GoalsAgainst} | {percentage.ToString("##0.##")}%";
+                var resultString = $"{team.Name} | {team.Points} | {played} | {team.Wins} | {team.Draws} | {team.Losses} | {team.GoalDifference} | {team.GoalsFor} | {team.GoalsAgainst} | {percentage.ToString("##0.##")}%";
             
                 result.Add(resultString);
             }
@@ -203,7 +203,7 @@ namespace Domain
             var result = new List<string>();
             foreach (var player in top10)
             {
-                result.Add($"{player.GoalsForTeam} - {player.Name} {player.CurrentTeam.TeamName.ToUpper()}");
+                result.Add($"{player.GoalsForTeam} - {player.Name} {player.CurrentTeam.Name.ToUpper()}");
             }
 
             return result;

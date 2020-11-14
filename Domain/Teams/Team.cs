@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Domain.Entities;
 using Domain.Players;
 
 namespace Domain.Teams
 {
-    public class Team
+    public class Team : Entity
     {
-        public Guid Id
-        {get; set;} = Guid.NewGuid();
-        
-        public string TeamName
+        public string Name
         {get; protected set;}
 
         public List<Player_Team> Players
@@ -18,14 +16,19 @@ namespace Domain.Teams
 
         public Team(string name, List<Player> players)
         {
-            TeamName = name;
+            Name = name;
             Players = players.Select(x => new Player_Team(x, this)).ToList();
         }
 
         protected Team(string name, List<Player_Team> players)
         {
-            TeamName = name;
+            Name = name;
             Players = players;
+        }
+
+        public Team(string name)
+        {
+            Name = name;
         }
     }
 }
