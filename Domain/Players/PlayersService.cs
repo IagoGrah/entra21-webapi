@@ -20,6 +20,26 @@ namespace Domain.Players
             return new CreatedPlayerDTO(player.Id);
         }
 
+        public CreatedPlayerDTO Update(Guid id, string name)
+        {
+            var player = new Player(name);
+            var playerValidation = player.Validate();
+
+            if (!playerValidation.isValid)
+            {
+                return new CreatedPlayerDTO(playerValidation.errors);
+            }
+            
+            PlayersRepository.Remove(id);
+            PlayersRepository.Add(player);
+            return new CreatedPlayerDTO(player.Id);
+        }
+
+        public Guid? Remove(Guid id)
+        {
+            return PlayersRepository.Remove(id);
+        }
+
         public IEnumerable<Player> GetAll()
         {
             return PlayersRepository.Players as IEnumerable<Player>;
