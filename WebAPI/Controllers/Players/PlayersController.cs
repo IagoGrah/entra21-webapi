@@ -119,9 +119,9 @@ namespace WebAPI.Controllers.Players
         }
 
         [HttpGet]
-        public IEnumerable<Player> Get()
+        public IActionResult Get()
         {
-            return _playersService.GetAll();
+            return Ok(_playersService.GetAll());
         }
     }
 }
