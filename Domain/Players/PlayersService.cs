@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using System.Collections.Generic;
 
 namespace Domain.Players
@@ -16,7 +15,8 @@ namespace Domain.Players
                 return new CreatedPlayerDTO(playerVal.errors);
             }
             
-            PlayersRepository.Add(player);
+            var playersRepository = new PlayersRepository();
+            playersRepository.Add(player);
             return new CreatedPlayerDTO(player.Id);
         }
 
@@ -30,19 +30,28 @@ namespace Domain.Players
                 return new CreatedPlayerDTO(playerValidation.errors);
             }
             
-            PlayersRepository.Remove(id);
-            PlayersRepository.Add(player);
+            var playersRepository = new PlayersRepository();
+            playersRepository.Remove(id);
+            playersRepository.Add(player);
             return new CreatedPlayerDTO(player.Id);
         }
 
         public Guid? Remove(Guid id)
         {
-            return PlayersRepository.Remove(id);
+            var playersRepository = new PlayersRepository();return 
+            playersRepository.Remove(id);
+        }
+
+        public Player GetByID(Guid id)
+        {
+            var playersRepository = new PlayersRepository();return 
+            playersRepository.GetByID(id);
         }
 
         public IEnumerable<Player> GetAll()
         {
-            return PlayersRepository.Players as IEnumerable<Player>;
+            var playersRepository = new PlayersRepository();return 
+            playersRepository.GetAll();
         }
     }
 }

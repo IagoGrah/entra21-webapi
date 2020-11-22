@@ -118,8 +118,21 @@ namespace WebAPI.Controllers.Players
             return NoContent();
         }
 
+        [HttpGet("{id}")]
+        public IActionResult GetByID(Guid id)
+        {
+            var player = _playersService.GetByID(id);
+
+            if (player == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(player);
+        }
+
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GetAll()
         {
             return Ok(_playersService.GetAll());
         }

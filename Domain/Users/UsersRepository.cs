@@ -1,15 +1,35 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using Domain.Infra;
 
 namespace Domain.Users
 {
-    static class UsersRepository
+    class UsersRepository
     {
-        private static List<User> _users { get; set; } = new List<User>();
-        public static IReadOnlyCollection<User> Users => _users;
-        
-        public static void Add(User user)
+        public void Add(User user)
         {
-            _users.Add(user);
+            using (var db = new BrasileiraoContext())
+            {
+                db.Users.Add(user);
+                db.SaveChanges();
+            }
+        }
+
+        public User GetByID(Guid id)
+        {
+            using (var db = new BrasileiraoContext())
+            {
+                return db.Users.FirstOrDefault(x => x.Id == id);
+            }
+        }
+
+        public IEnumerable<User> GetAll()
+        {
+            using (var db = new BrasileiraoContext())
+            {
+                return db.Users;
+            }
         }
     }
 }

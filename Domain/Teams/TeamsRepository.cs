@@ -1,15 +1,35 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using Domain.Infra;
 
 namespace Domain.Teams
 {
-    static class TeamsRepository
+    class TeamsRepository
     {
-        private static List<Team> _teams { get; set; } = new List<Team>();
-        public static IReadOnlyCollection<Team> Teams => _teams;
-        
-        public static void Add(Team team)
-        {
-            _teams.Add(team);
-        }
+        // public void Add(Team team)
+        // {
+        //     using (var db = new BrasileiraoContext())
+        //     {
+        //         db.Teams.Add(team);
+        //         db.SaveChanges();
+        //     }
+        // }
+
+        // public Team GetByID(Guid id)
+        // {
+        //     using (var db = new BrasileiraoContext())
+        //     {
+        //         return db.Teams.FirstOrDefault(x => x.Id == id);
+        //     }
+        // }
+
+        // public IEnumerable<Team> GetAll()
+        // {
+        //     using (var db = new BrasileiraoContext())
+        //     {
+        //         return db.Teams;
+        //     }
+        // }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Domain.Users
@@ -15,13 +16,21 @@ namespace Domain.Users
                 return new CreatedUserDTO(userVal.errors);
             }
             
-            UsersRepository.Add(user);
+            var usersRepository = new UsersRepository();
+            usersRepository.Add(user);
             return new CreatedUserDTO(user.Id);
         }
 
         public User GetByID(Guid id)
         {
-            return UsersRepository.Users.FirstOrDefault(x => x.Id == id);
+            var usersRepository = new UsersRepository();
+            return usersRepository.GetByID(id);
+        }
+
+        public IEnumerable<User> GetAll()
+        {
+            var usersRepository = new UsersRepository();
+            return usersRepository.GetAll();
         }
     }
 }

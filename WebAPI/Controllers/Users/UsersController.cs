@@ -48,5 +48,11 @@ namespace WebAPI.Controllers.Users
 
             return Ok(user);
         }
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            return Ok(_usersService.GetAll());
+        }
     }
 }
