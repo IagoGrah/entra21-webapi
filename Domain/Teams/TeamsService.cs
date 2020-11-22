@@ -7,6 +7,8 @@ namespace Domain.Teams
 {
     public class TeamsService
     {
+        // private readonly TeamsRepository _teamsRepository = new TeamsRepository();
+        
         // public CreatedTeamDTO Create(string name)
         // {
         //     var team = new Team(name);
@@ -17,21 +19,18 @@ namespace Domain.Teams
         //     //     return new CreatedTeamDTO(teamVal.errors);
         //     // }
             
-        //     var teamsRepository = new TeamsRepository();
-        //     teamsRepository.Add(team);
+        //     _teamsRepository.Add(team);
         //     return new CreatedTeamDTO(team.Id);
         // }
 
         // public Team GetByID(Guid id)
         // {
-        //     var teamsRepository = new TeamsRepository();
-        //     return teamsRepository.GetByID(id);
+        //     return _teamsRepository.GetByID(id);
         // }
 
         // public IEnumerable<Team> GetAll()
         // {
-        //     var teamsRepository = new TeamsRepository();
-        //     return teamsRepository.GetAll();
+        //     return _teamsRepository.GetAll();
         // }
     }
 }

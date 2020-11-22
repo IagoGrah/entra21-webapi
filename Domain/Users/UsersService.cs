@@ -6,6 +6,8 @@ namespace Domain.Users
 {
     public class UsersService
     {
+        private readonly UsersRepository _usersRepository = new UsersRepository();
+        
         public CreatedUserDTO Create(string name, Profile profile)
         {
             var user = new User(name, profile);
@@ -16,21 +18,18 @@ namespace Domain.Users
                 return new CreatedUserDTO(userVal.errors);
             }
             
-            var usersRepository = new UsersRepository();
-            usersRepository.Add(user);
+            _usersRepository.Add(user);
             return new CreatedUserDTO(user.Id);
         }
 
         public User GetByID(Guid id)
         {
-            var usersRepository = new UsersRepository();
-            return usersRepository.GetByID(id);
+            return _usersRepository.GetByID(id);
         }
 
         public IEnumerable<User> GetAll()
         {
-            var usersRepository = new UsersRepository();
-            return usersRepository.GetAll();
+            return _usersRepository.GetAll();
         }
     }
 }

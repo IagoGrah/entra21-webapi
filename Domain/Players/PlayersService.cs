@@ -5,6 +5,8 @@ namespace Domain.Players
 {
     public class PlayersService
     {
+        private readonly PlayersRepository _playersRepository = new PlayersRepository();
+        
         public CreatedPlayerDTO Create(string name)
         {
             var player = new Player(name);
@@ -15,8 +17,7 @@ namespace Domain.Players
                 return new CreatedPlayerDTO(playerVal.errors);
             }
             
-            var playersRepository = new PlayersRepository();
-            playersRepository.Add(player);
+            _playersRepository.Add(player);
             return new CreatedPlayerDTO(player.Id);
         }
 
@@ -30,28 +31,24 @@ namespace Domain.Players
                 return new CreatedPlayerDTO(playerValidation.errors);
             }
             
-            var playersRepository = new PlayersRepository();
-            playersRepository.Remove(id);
-            playersRepository.Add(player);
+            _playersRepository.Remove(id);
+            _playersRepository.Add(player);
             return new CreatedPlayerDTO(player.Id);
         }
 
         public Guid? Remove(Guid id)
         {
-            var playersRepository = new PlayersRepository();return 
-            playersRepository.Remove(id);
+            return _playersRepository.Remove(id);
         }
 
         public Player GetByID(Guid id)
         {
-            var playersRepository = new PlayersRepository();return 
-            playersRepository.GetByID(id);
+            return _playersRepository.GetByID(id);
         }
 
         public IEnumerable<Player> GetAll()
         {
-            var playersRepository = new PlayersRepository();return 
-            playersRepository.GetAll();
+            return _playersRepository.GetAll();
         }
     }
 }
