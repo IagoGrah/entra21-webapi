@@ -1,6 +1,7 @@
 version: '3'
 services:
   db:
+    user: root
     image: mcr.microsoft.com/mssql/server:2019-latest
     container_name: brasileirao-sqlserver
     ports:
@@ -8,3 +9,5 @@ services:
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=pass?WORD!
+    volumes:
+      - ./volumes/data:/var/opt/mssql/data
